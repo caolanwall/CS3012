@@ -123,4 +123,20 @@ public class CS3012test {
 		tree.root = null; 
 		assertEquals(tree.findLCA(0,0), -1);  
 	}
+	
+	@Test
+    public void rootDAGTest() { 
+        CS3012.DagNode root = new CS3012.DagNode(1);
+        CS3012.DagNode node2 = new CS3012.DagNode(2); 
+        CS3012.DagNode node3 = new CS3012.DagNode(3);
+        CS3012.DagNode node4 = new CS3012.DagNode(4);
+        CS3012.DagNode node5 = new CS3012.DagNode(5);
+        root.edges.add(node2);
+        root.edges.add(node3);
+        root.edges.add(node4); 
+        root.edges.add(node5);  
+        assertEquals(root, CS3012.findLCADAG(root, node2, node3));
+        assertEquals(root, CS3012.findLCADAG(root, node4, node5));
+        assertEquals(root, CS3012.findLCADAG(root, node5, node2));
+    }
 }

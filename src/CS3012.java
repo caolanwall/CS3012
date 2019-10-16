@@ -2,6 +2,7 @@
 // A O(n) solution to find LCA of two given values n1 and n2 
 import java.util.ArrayList; 
 import java.util.List; 
+import java.util.LinkedList;
   
 // A Binary Tree node 
 class Node { 
@@ -39,7 +40,7 @@ public class CS3012
               
         // System.out.println(path1.get(i) + " " + path2.get(i)); 
             if (!path1.get(i).equals(path2.get(i))) 
-                break; 
+                break;   
         } 
   
         return path1.get(i-1); 
@@ -75,7 +76,80 @@ public class CS3012
         path.remove(path.size()-1); 
   
         return false; 
+        
     } 
-  
+    
+    public static DagNode findLCADAG(DagNode head, DagNode nodeOne, DagNode nodeTwo) {
+        DagNode LCA = null;
+        ArrayList<DagNode> nodes = new ArrayList<>();
+        addNodesToListDAG(nodes, head);
+        boolean isAncestor[] = new boolean[nodes.size()];
+        for (int i = 0; i < isAncestor.length; i++)
+            isAncestor[i] = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (checkIfAncestorDAG(nodes.get(i), nodeOne, nodeTwo)) {
+                isAncestor[i] = true;
+            }
+        }
+        for (int i = 0; i < nodes.size(); i++) {
+            if(isAncestor[i])
+                LCA = nodes.get(i);
+        }
+        return LCA;
+    } 
+    
+    public static boolean checkIfAncestorDAG(DagNode node, DagNode nodeOne) {
+        if (node == null)
+            return false;
+        if (node == nodeOne)
+            return true;
+        else {
+            for (int i = 0; i < node.edges.size(); i++) {
+                if (checkIfAncestorDAG(node.edges.get(i), nodeOne)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public static boolean checkIfAncestorDAG(DagNode node, DagNode nodeOne, DagNode nodeTwo) {
+        if (checkIfAncestorDAG(node, nodeOne) && checkIfAncestorDAG(node, nodeTwo))
+            return true;
+        return false;
+    }
+    
+    public static void addNodesToListDAG(ArrayList<DagNode> nodes, DagNode root) {
+        if (root != null) {
+            LinkedList<DagNode> queue = new LinkedList<>();
+            queue.add(root);
+            DagNode cur;
+            while (queue.size() != 0) {
+                cur = queue.get(0);
+                for (int i = 0; i < cur.edges.size(); i++) {
+                    queue.add(cur.edges.get(i));
+                }
+                nodes.add(cur);
+                queue.remove(0);
+            }
+        }
+    }
+    
+    public static class DagNode {
+        int value;
+        ArrayList<DagNode> edges;
+
+        DagNode(int value)
+        {
+            this.value = value;
+            edges = new ArrayList<>();
+        }
+
+        DagNode(int value, ArrayList<DagNode> edges) 
+        {
+            this.value = value;
+            this.edges = edges;
+        }
 } 
+}
 // This code is contributed by Sreenivasulu Rayanki. 
