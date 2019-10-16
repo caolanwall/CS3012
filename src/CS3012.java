@@ -31,8 +31,6 @@ public class CS3012
     private int findLCAInternal(Node root, int n1, int n2) { 
   
         if (!findPath(root, n1, path1) || !findPath(root, n2, path2)) { 
-            System.out.println((path1.size() > 0) ? "n1 is present" : "n1 is missing"); 
-            System.out.println((path2.size() > 0) ? "n2 is present" : "n2 is missing"); 
             return -1; 
         } 
   
@@ -69,7 +67,7 @@ public class CS3012
         } 
   
         if (root.right != null && findPath(root.right, n, path)) { 
-            return true; 
+            return true;  
         } 
   
         // If not present in subtree rooted with root, remove root from 
