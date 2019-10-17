@@ -103,7 +103,7 @@ public class CS3012test {
         tree.root.left.right = new Node(-9); 
         
         tree.root.right.left = new Node(-3);  
-        tree.root.right.right = new Node(-2); 
+        tree.root.right.right = new Node(-2);  
         /*							-4
          * 						/		\
          * 					-6				-7
@@ -121,11 +121,11 @@ public class CS3012test {
 	public void testNull() { 
 		CS3012 tree = new CS3012();
 		tree.root = null; 
-		assertEquals(tree.findLCA(0,0), -1);  
-	}
+		assertEquals(tree.findLCA(null, null), -1);  
+	} 
 
 	
-	@Test
+	@Test 
     public void rootDAGTest() { 
         CS3012.DagNode root = new CS3012.DagNode(1);
         CS3012.DagNode node2 = new CS3012.DagNode(2); 
@@ -204,6 +204,30 @@ public class CS3012test {
         assertEquals(CS3012.findLCADAG(root, node7, node4), node4);
         assertEquals(CS3012.findLCADAG(root, node10, node9), node9); 
         assertEquals(CS3012.findLCADAG(root, node8, node9), node7);
+	}
+	
+	@Test
+    public void slidesDAGTest() { 
+        CS3012.DagNode node1 = new CS3012.DagNode(1);
+        CS3012.DagNode node2 = new CS3012.DagNode(2); 
+        CS3012.DagNode node3 = new CS3012.DagNode(3);
+        CS3012.DagNode node4 = new CS3012.DagNode(4); 
+        CS3012.DagNode node5 = new CS3012.DagNode(5);
+        CS3012.DagNode node6 = new CS3012.DagNode(6);
+        CS3012.DagNode node7 = new CS3012.DagNode(7);
+        
+        node7.edges.add(node4);
+        node7.edges.add(node6);
+        node4.edges.add(node3);
+        node3.edges.add(node2);
+        node2.edges.add(node1);
+        node6.edges.add(node5);
+        node5.edges.add(node2);
+        
+        assertEquals(CS3012.findLCADAG(node7, node2, node5), node5);
+        assertEquals(CS3012.findLCADAG(node7, node4, node5), node7);  
+        assertEquals(CS3012.findLCADAG(node7, node4, node4), node4); 
+        
 	}
 	 
 

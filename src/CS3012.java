@@ -22,11 +22,17 @@ public class CS3012
     private List<Integer> path2 = new ArrayList<>(); 
   
     // Finds the path from root node to given root of the tree. 
+    int findLCA(Node n1, Node n2) { 
+    		return -1;
+    } 
+    
     int findLCA(int n1, int n2) { 
         path1.clear(); 
         path2.clear(); 
         return findLCAInternal(root, n1, n2); 
     } 
+    
+   
   
     private int findLCAInternal(Node root, int n1, int n2) { 
   
@@ -82,7 +88,7 @@ public class CS3012
         DagNode LCA = null;
         ArrayList<DagNode> nodes = new ArrayList<>();
         addNodesToListDAG(nodes, head);
-        boolean isAncestor[] = new boolean[nodes.size()]; 
+        boolean isAncestor[] = new boolean[nodes.size()];  
         for (int i = 0; i < isAncestor.length; i++)
             isAncestor[i] = false;
         for (int i = 0; i < nodes.size(); i++) {
@@ -113,7 +119,7 @@ public class CS3012
     public static boolean checkIfAncestorDAG(DagNode node, DagNode nodeOne, DagNode nodeTwo) {
         if (checkIfAncestorDAG(node, nodeOne) && checkIfAncestorDAG(node, nodeTwo))
             return true;
-        return false;
+        return false; 
     }
     
     public static void addNodesToListDAG(ArrayList<DagNode> nodes, DagNode root) {
