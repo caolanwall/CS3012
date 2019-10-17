@@ -145,11 +145,7 @@ public class CS3012
             edges = new ArrayList<>();
         }
 
-        DagNode(int value, ArrayList<DagNode> edges) 
-        {
-            this.value = value;
-            this.edges = edges;
-        }
+
 } 
 }
 // This code is contributed by Sreenivasulu Rayanki. 
