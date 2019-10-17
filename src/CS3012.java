@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List; 
 import java.util.LinkedList;
   
-// A Binary Tree node 
 class Node { 
     int data; 
     Node left, right; 
@@ -83,7 +82,7 @@ public class CS3012
         DagNode LCA = null;
         ArrayList<DagNode> nodes = new ArrayList<>();
         addNodesToListDAG(nodes, head);
-        boolean isAncestor[] = new boolean[nodes.size()];
+        boolean isAncestor[] = new boolean[nodes.size()]; 
         for (int i = 0; i < isAncestor.length; i++)
             isAncestor[i] = false;
         for (int i = 0; i < nodes.size(); i++) {
@@ -99,8 +98,6 @@ public class CS3012
     } 
     
     public static boolean checkIfAncestorDAG(DagNode node, DagNode nodeOne) {
-        if (node == null)
-            return false;
         if (node == nodeOne)
             return true;
         else {
@@ -121,7 +118,7 @@ public class CS3012
     
     public static void addNodesToListDAG(ArrayList<DagNode> nodes, DagNode root) {
         if (root != null) {
-            LinkedList<DagNode> queue = new LinkedList<>();
+            LinkedList<DagNode> queue = new LinkedList<>(); 
             queue.add(root);
             DagNode cur;
             while (queue.size() != 0) {
@@ -144,7 +141,6 @@ public class CS3012
             this.value = value;
             edges = new ArrayList<>();
         }
-
 
 } 
 }

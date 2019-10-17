@@ -150,6 +150,7 @@ public class CS3012test {
         CS3012.DagNode node3 = new CS3012.DagNode(3);
         CS3012.DagNode node4 = new CS3012.DagNode(4); 
         CS3012.DagNode node5 = new CS3012.DagNode(5);
+        
         root.edges.add(node2);
         root.edges.add(node3);
         node2.edges.add(node3);
@@ -169,5 +170,50 @@ public class CS3012test {
         assertEquals(CS3012.findLCADAG(root, node2, node5), node2); 
         assertEquals(CS3012.findLCADAG(root, node4, node3), node2); 
     }
-	
+
+
+	@Test
+    public void largeDAGTest() { 
+        CS3012.DagNode root = new CS3012.DagNode(1);
+        CS3012.DagNode node2 = new CS3012.DagNode(2); 
+        CS3012.DagNode node3 = new CS3012.DagNode(3);
+        CS3012.DagNode node4 = new CS3012.DagNode(4); 
+        CS3012.DagNode node5 = new CS3012.DagNode(5);
+        CS3012.DagNode node6 = new CS3012.DagNode(6);
+        CS3012.DagNode node7 = new CS3012.DagNode(7);
+        CS3012.DagNode node8 = new CS3012.DagNode(8);
+        CS3012.DagNode node9 = new CS3012.DagNode(9);
+        CS3012.DagNode node10 = new CS3012.DagNode(10);
+        
+        root.edges.add(node2);
+        root.edges.add(node4);
+        node2.edges.add(node3);
+        node3.edges.add(node5);
+        node3.edges.add(node6);
+        node4.edges.add(node7);
+        node7.edges.add(node8); 
+        node7.edges.add(node9); 
+        node8.edges.add(node10); 
+        node9.edges.add(node10); 
+        
+        assertEquals(CS3012.findLCADAG(root, node2, node4), root);  
+        assertEquals(CS3012.findLCADAG(root, node8, node7), node7);  
+        assertEquals(CS3012.findLCADAG(root, node3, node8), root);
+        assertEquals(CS3012.findLCADAG(root, node3, node6), node3);
+        assertEquals(CS3012.findLCADAG(root, node5, node6), node3);
+        assertEquals(CS3012.findLCADAG(root, node7, node4), node4);
+        assertEquals(CS3012.findLCADAG(root, node10, node9), node9); 
+        assertEquals(CS3012.findLCADAG(root, node8, node9), node7);
+	}
+	 
+
 }
+
+
+
+
+
+
+
+
+
