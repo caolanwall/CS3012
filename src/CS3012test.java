@@ -230,7 +230,10 @@ public class CS3012test {
         
 	}
 	 
-
+	@Test
+    public void nullDAGTest() { 
+		assertEquals(CS3012.findLCADAG(null, null, null), null);
+	}
 }
 
 
